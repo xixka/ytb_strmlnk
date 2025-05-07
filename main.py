@@ -117,7 +117,7 @@ if __name__ == "__main__":
     # 播放列表URL输入（强制必须输入）
     playlist_url = input("请输入YouTube播放列表URL: ").strip()
     if not playlist_url:
-        playlist_url = "https://www.youtube.com/playlist?list=PLNMQ7bxchKgcgy9xu_gCz1zg0HVSnTtuS"
+        playlist_url = "https://www.youtube.com/playlist?list=PLRBClVey5BqxXUyIqXnpk9h4fojdBCkJo"
 
     makeSTRM(playlist_url, proxy)
     
