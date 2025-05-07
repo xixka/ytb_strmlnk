@@ -1,0 +1,31 @@
+name: Build Python to EXE
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:  # 添加手动触发选项
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install PyInstaller
+      run: pip install pyinstaller
+
+    - name: Build EXE
+      run: pyinstaller --onefile --clean main.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: main-exe
+        path: dist/main.exe
