@@ -41,7 +41,7 @@ def __parse_playlist_data(initial_data):
             raw_title = video['title']['runs'][0]['text']
             # 清理非法字符
             clean_title = re.sub(ILLEGAL_CHARS, '_', raw_title)
-            # 生成文件名（保留前80个字符避免过长）
+            # 生成文件名
             safe_filename = clean_title.strip() + ".strmlnk"
 
             video_url = f"https://www.youtube.com/watch?v={video_id}"
