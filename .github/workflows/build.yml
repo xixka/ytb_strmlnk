@@ -1,4 +1,4 @@
-name: Build Python to EXE
+name: Build EXE with Icon
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4  # 必须检出图标文件
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -21,16 +21,16 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install -r requirements.txt  # 先安装项目依赖
+        if exist requirements.txt pip install -r requirements.txt
 
     - name: Install PyInstaller
       run: pip install pyinstaller
 
-    - name: Build EXE
-      run: pyinstaller --onefile --clean main.py
+    - name: Build EXE with Icon
+      run: pyinstaller --onefile --icon=assets/icon.ico --clean --name ytb_strmlnk main.py  # 指定图标路径
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: main-exe
-        path: dist/main.exe
+        name: ytb-strmlnk-exe
+        path: dist/ytb_strmlnk.exe
